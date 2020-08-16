@@ -30,7 +30,7 @@ contact me : +201289655922
 
 ## Project Description
 
-weather jornal site the get and post data from web api
+weather jornal site that get and post data from web api
 
 ## Technology used
 
