@@ -23,29 +23,25 @@ app.use(cors());
 app.use(express.static("website"));
 const port = 5000;
 
-//Spin up the server
+
 const server = app.listen(port, listening);
 
-// Callback to debug
 function listening() {
-  console.log("server running");
   console.log(`running on localhost: ${port}`);
 }
+const data = [];
+app.post("/add", adddata);
 
-//GET route that returns the projectData object
-app.get("/all", sendData);
-
-function sendData(request, response) {
-  response.send(projectData);
+function adddata(req, res) {
+  projectData["date"] = req.body.date;
+  projectData["temp"] = req.body.temp;
+  projectData["content"] = req.body.content;
+  res.send(projectData);
 }
 
-// POST route
-app.post("/addWeatherData", addData);
+// Callback function to complete GET '/all'
+app.get("/all", getdata);
 
-function addData(request, response) {
-  projectData.temperature = request.body.temperature;
-  projectData.date = request.body.date;
-  projectData.user_response = request.body.user_response;
-  response.end();
-  console.log(projectData);
+function getdata(req, res) {
+  res.send(projectData);
 }
